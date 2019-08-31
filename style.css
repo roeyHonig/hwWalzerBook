@@ -5,6 +5,14 @@ body {
     background-image: url('Resources/prism.png');
     
 }
+.navbar{
+    direction: rtl;
+}
+#hw-dropdown-menu{
+    text-align: right;
+    right: 0;
+    left: initial;
+}
 #testDiv {
     margin: 0% 10%;
     font-size: 50px;

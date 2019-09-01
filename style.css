@@ -15,7 +15,16 @@ body {
     left: initial;
 }
 #testDiv {
-    margin: 56px 10%;
+    margin: auto;
+    margin-top: 56px;
     font-size: 50px;
+    max-width: 992px;
     background-image: url('Resources/paper_fibers.png');
 }
+/* When Window Width is less then 992px */
+@media (max-width: 992px) {
+    #testDiv {
+        margin: 56px 0%;
+    }
+}
+

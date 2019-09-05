@@ -9,4 +9,13 @@ $(document).ready(function(){
 
   function sayHello() {
     // TODO: toggle dark / light mode
+    // background-image: url('Resources/paper_fibers.png');
+    if ($("#testDiv").css("color") == "rgb(0, 0, 0)") {
+        $("#testDiv").css("background-image", "url('Resources/black_paper.png')")
+        $("#testDiv").css("color", "white")
+    } else {
+        $("#testDiv").css("background-image", "url('Resources/paper_fibers.png')")
+        $("#testDiv").css("color", "black")
+    }
+    
   }

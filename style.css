@@ -15,9 +15,6 @@ body {
     left: initial;
     max-height: 500px;
     overflow: scroll;
-
-    
-
 }
 #social-media-container{
     direction: ltr;
@@ -42,7 +39,6 @@ body {
     -webkit-appearance: none;
     width: 10px;
   }
-  
   ::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background-color: rgba(0,0,0,.5);

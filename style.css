@@ -7,7 +7,7 @@ body {
 }
 .navbar{
     direction: rtl;
-    background-color: rgba(255, 255, 255, 0.98) !important;
+    background-color: rgba(0, 0, 0, 0.9);
 }
 #hw-dropdown-menu{
     text-align: right;
@@ -22,9 +22,10 @@ body {
     height: 40px;
 }
 #hwBookContent {
+    color: black;
     padding: 16px;
     margin: auto;
-    margin-top: 56px;
+    margin-top: 64px;
     font-size: 50px;
     max-width: 992px;
     background-image: url('Resources/paper_fibers.png');

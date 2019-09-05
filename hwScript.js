@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
     // jQuery methods go here...
     console.log("hello world")
@@ -9,13 +10,21 @@ $(document).ready(function(){
 
   function sayHello() {
     // TODO: toggle dark / light mode
-    // background-image: url('Resources/paper_fibers.png');
     if ($("#hwBookContent").css("color") == "rgb(0, 0, 0)") {
+        // dark mode
         $("#hwBookContent").css("background-image", "url('Resources/black_paper.png')")
         $("#hwBookContent").css("color", "white")
+        $(".navbar").removeClass("navbar-dark")
+        $(".navbar").addClass("navbar-light")
+        $(".navbar").css("background-color", "rgba(255, 255, 255, 0.9)")
+        
     } else {
+        // light mode
         $("#hwBookContent").css("background-image", "url('Resources/paper_fibers.png')")
         $("#hwBookContent").css("color", "black")
+        $(".navbar").removeClass("navbar-light")
+        $(".navbar").addClass("navbar-dark")
+        $(".navbar").css("background-color", "rgba(0, 0, 0, 0.9)")
     }
     
   }

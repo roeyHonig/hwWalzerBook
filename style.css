@@ -22,10 +22,11 @@ body {
     height: 40px;
 }
 #hwBookContent {
+    position: relative;
     color: black;
     padding: 16px;
     margin: auto;
-    margin-top: 64px;
+    margin-top: 65px;
     font-size: 50px;
     max-width: 1450px;
     background-image: url('Resources/paper_fibers.png');
@@ -45,5 +46,21 @@ body {
     border-radius: 5px;
     background-color: rgba(0,0,0,.5);
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+  }
+  .hwChapter{
+      padding-top: 65px;
+  }
+  #hwChapter_1 {
+    padding-top: 0px;
+    color: pink;
+  }
+  #anchorForChapter_1_link{
+      height: 65px;
+      position: absolute;
+      top: -65px;
+
+  }
+  #hwChapter_2 {
+    color: green;
   }
 

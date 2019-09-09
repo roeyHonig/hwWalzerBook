@@ -27,11 +27,11 @@ body {
     margin: auto;
     margin-top: 64px;
     font-size: 50px;
-    max-width: 992px;
+    max-width: 1450px;
     background-image: url('Resources/paper_fibers.png');
 }
-/* When Window Width is less then 992px */
-@media (max-width: 992px) {
+/* When Window Width is less then 1450px */
+@media (max-width: 1450px) {
     #hwBookContent {
         margin: 56px 0%;
     }

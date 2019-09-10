@@ -53,41 +53,57 @@ body {
       text-align: right;
       font-size: 20px;
   }
+  .hwChapterNumber{
+    font-size: 40px;
+    }
   /* When Window Width is less then 1201px */
 @media (max-width: 1201px) {
     .hwChapter {
         font-size: 18px;
     }
+    .hwChapterNumber{
+        font-size: 36px;
+        }
 }
 /* When Window Width is less then 936px */
 @media (max-width: 936px) {
     .hwChapter {
         font-size: 16px;
     }
+    .hwChapterNumber{
+        font-size: 32px;
+        }
 }
 /* When Window Width is less then 636px */
 @media (max-width: 636px) {
     .hwChapter {
         font-size: 14px;
     }
+    .hwChapterNumber{
+        font-size: 28px;
+        }
 }
 /* When Window Width is less then 500px */
 @media (max-width: 500px) {
     .hwChapter {
         font-size: 12px;
     }
+    .hwChapterNumber{
+        font-size: 24px;
+        }
 }
-  #hwChapter_1 {
+  #hwChapter_0 {
     padding-top: 0px;
     /*color: pink;*/
   }
-  #anchorForChapter_1_link{
+  #anchorForChapter_0_link{
       height: 65px;
       position: absolute;
       top: -65px;
 
   }
-  #hwChapter_2 {
+  
+  #hwChapter_1 {
     color: green;
   }
 

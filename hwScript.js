@@ -6,7 +6,8 @@ $(document).ready(function(){
     var dropdown_link_offset = $("#navbarDropdownMenuLink").offset();
     var y_position = dropdown_link_offset.top + $("#navbarDropdownMenuLink").height();
     $("#hw-dropdown-menu").css("max-height", 0.75*(window_height-y_position)+"px")
-
+    var window_width = $(window).width()
+    $("#hw-dropdown-menu").css("max-width", 0.75*(window_width)+"px")
   });
 
   function toggler_dark_light_mode() {

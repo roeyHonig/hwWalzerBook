@@ -49,10 +49,37 @@ body {
   }
   .hwChapter{
       padding-top: 65px;
+      direction: rtl;
+      text-align: right;
+      font-size: 20px;
   }
+  /* When Window Width is less then 1201px */
+@media (max-width: 1201px) {
+    .hwChapter {
+        font-size: 18px;
+    }
+}
+/* When Window Width is less then 936px */
+@media (max-width: 936px) {
+    .hwChapter {
+        font-size: 16px;
+    }
+}
+/* When Window Width is less then 636px */
+@media (max-width: 636px) {
+    .hwChapter {
+        font-size: 14px;
+    }
+}
+/* When Window Width is less then 500px */
+@media (max-width: 500px) {
+    .hwChapter {
+        font-size: 12px;
+    }
+}
   #hwChapter_1 {
     padding-top: 0px;
-    color: pink;
+    /*color: pink;*/
   }
   #anchorForChapter_1_link{
       height: 65px;

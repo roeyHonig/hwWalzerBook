@@ -106,4 +106,9 @@ body {
   #hwChapter_1 {
     /*color: green;*/
   }
+  #reactionsImg {
+    height: auto; 
+    width: auto; 
+    max-width: 300px; 
+}
 

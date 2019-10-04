@@ -17,7 +17,7 @@ $(document).ready(function(){
       $("#hwBookContent").css("color", "white")
       $(".navbar").removeClass("navbar-dark")
       $(".navbar").addClass("navbar-light")
-      $(".navbar").css("background-color", "rgba(255, 255, 255, 0.9)")
+      $(".navbar").css("background-color", "rgba(255, 255, 255, 0.85)")
       
      } else {
       // light mode
@@ -25,6 +25,6 @@ $(document).ready(function(){
       $("#hwBookContent").css("color", "black")
       $(".navbar").removeClass("navbar-light")
       $(".navbar").addClass("navbar-dark")
-      $(".navbar").css("background-color", "rgba(0, 0, 0, 0.9)")
+      $(".navbar").css("background-color", "rgba(0, 0, 0, 0.85)")
      }
   }

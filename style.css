@@ -7,7 +7,7 @@ body {
 }
 .navbar{
     direction: rtl;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.85);
 }
 #hw-dropdown-menu{
     text-align: right;
@@ -92,6 +92,35 @@ body {
         font-size: 24px;
         }
 }
+/* When Window Width is less then 400px */
+@media (max-width: 400px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+   
+}
+/* When Window Width is less then 390px */
+@media (max-width: 390px) {
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
+   
+}
+/* When Window Width is less then 380px */
+@media (max-width: 380px) {
+    .navbar-brand {
+        font-size: 1.0rem;
+    }
+   
+}
+/* When Window Width is less then 370px */
+@media (max-width: 370px) {
+    .navbar-brand {
+        font-size: 0.9rem;
+    }
+   
+}
+
   #hwChapter_0 {
     padding-top: 0px;
     /*color: pink;*/

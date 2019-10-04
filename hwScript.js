@@ -28,3 +28,16 @@ $(document).ready(function(){
       $(".navbar").css("background-color", "rgba(0, 0, 0, 0.85)")
      }
   }
+
+  function hideDropDownInNavBar() {
+    console.log("click")
+    // iterate over all elements with the class "navbar-toggler"
+    $('.navbar-toggler').each(function(i, obj) {
+      // for each element 
+      $(this).addClass("collapsed")
+  });
+  $('.navbar-collapse').each(function(i, obj) {
+    // for each element 
+    $(this).removeClass("show")
+});
+  }

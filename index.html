@@ -39,7 +39,7 @@
                         פרקים
                       </a>
                       <div id="hw-dropdown-menu" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#anchorForChapter_0_link">מבוא</a>
+                        <a class="dropdown-item" href="#hwChapter_0">מבוא</a>
                         <a class="dropdown-item" href="#hwChapter_1">פרק 1: תחילת המסע</a>
                         <a class="dropdown-item" href="#hwChapter_2">פרק 2: היקום העתיק</a>
                         <a class="dropdown-item" href="#hwChapter_3">פרק 3: היקום המתפשט</a>
@@ -113,9 +113,15 @@
     <div id="hwBookContent" onclick="hideDropDownInNavBar()">
 
        <!-- we're using the website: https://wordtohtml.net in order to qiuckly convert text to html tags. In This process, we get some style preferences that alter the design as dictatied by our own css. This is why , we've replaced the style attributes, that were autometically generated via the https://wordtohtml.net web site. with the word stylesss to render them useless  --> 
-       <!--Let's Bring the Canvas-->
+      
+       <div id="hwCoverImg" class="hwChapter">
+        <div id="anchorForChapter_0_link"></div>
+        <div class="hwChapterNumber" style="height: 0; visibility: hidden;"><strong>0</strong> </div>
+        <div class="hwChapterNumber"><strong>תמונת שער</strong> </div>
+        <canvas id="reverseScaleClock"></canvas>
+      </div>
+
       <div id="hwChapter_0" class="hwChapter">
-          <div id="anchorForChapter_0_link"></div>
           <div class="hwChapterNumber" style="height: 0; visibility: hidden;"><strong>0</strong> </div>
           <div class="hwChapterNumber"><strong>מבוא</strong> </div>
           <p stylesss="margin-bottom: 18.0pt; text-align: right;"><span stylesss="font-size: 10.5pt; font-family: 'David',sans-serif; color: #444444;">מזה זמן רב מנסה האדם לחשוף את מסתורי המוח האנושי, להבין את צורת פעולתו ואת הדרך המיוחדת בה תופס האדם את העולם הסובב אותו.<br />כישורי המוח &nbsp;הם רבים ומתבטאים ברבגוניות אדירה של נושאים הפזורים על פני כול תחומי החיים האנושיים, החל ביצירה ספרותית ואומנותית, דרך גיבוש רעיונות פילוסופיים מופשטים ורוחניים, וכלה בתחומי המדעים השונים, המטפלים בסביבה הפיזית בצורה מתמטית מדויקת.</span></p>

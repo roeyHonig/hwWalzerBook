@@ -49,10 +49,8 @@ body {
   }
   #reverseScaleClockCanvasOpeningImg {
     margin: auto;
-    border: 1px solid black;
-    width: 80%;
-    /* height and visibility will be set in javaScript after page is ready */
-    height: 0px;
+    width: 400px;
+    height: 1000px;
     visibility: hidden;
   }
   .hwChapter{

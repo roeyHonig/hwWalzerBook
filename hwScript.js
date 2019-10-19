@@ -54,14 +54,30 @@ $(document).ready(function(){
       canvasHeight = 1000; 
       canvasWidth = ratio*canvasHeight;
     }
+    // set dimensions for both canvas and svg
     $("#reverseScaleClockCanvasOpeningImg").css("height", canvasHeight+"px")
     $("#reverseScaleClockCanvasOpeningImg").css("width", canvasWidth+"px")
     $("#reverseScaleClockCanvasOpeningImg").css("visibility", "visible")
-    // center the element
+    $("#reverseScaleClockCanvasOpeningImgSVG").css("height", canvasHeight+"px")
+    $("#reverseScaleClockCanvasOpeningImgSVG").css("width", canvasWidth+"px")
+    $("#reverseScaleClockCanvasOpeningImgSVG").css("visibility", "visible")
+    // center the canvas element
     var parentDivWidth = $('#reverseScaleClockCanvasOpeningImg').parent().width()
     var sideMargin = (parentDivWidth-canvasWidth)/2
     $("#reverseScaleClockCanvasOpeningImg").css("margin-left", sideMargin+"px")
     $("#reverseScaleClockCanvasOpeningImg").css("margin-right", sideMargin+"px")
+    // center the svg element
+    var parentDivWidth = $('#reverseScaleClockCanvasOpeningImgSVG').parent().width()
+    var sideMargin = (parentDivWidth-canvasWidth)/2
+    $("#reverseScaleClockCanvasOpeningImgSVG").css("margin-left", sideMargin+"px")
+    $("#reverseScaleClockCanvasOpeningImgSVG").css("margin-right", sideMargin+"px")
+    // since the static position of the canvas will make it render below the svg img , as stated in the html file, we use relitive to re-position the canvas to interlap with svg
+    $("#reverseScaleClockCanvasOpeningImg").css("position", "relative")
+    $("#reverseScaleClockCanvasOpeningImg").css("top", -canvasHeight+"px")
+    // shrink the parentElement
+    let parentElement = $('#reverseScaleClockCanvasOpeningImgSVG').parent()
+    let oldHeight = parentElement.height()
+    parentElement.css("height", oldHeight-canvasHeight+"px")
   }
   
   // If we use the canvas element with static dimensions, then we can draw with no problem, but if we need dynamic dimensions that will sclae autometically, according to the parent div element, for example (such as 80% width, in our case), then we have a problem and the canvas element will scale the drawing as well, similarlly to scaling of an image.
@@ -102,6 +118,7 @@ $(document).ready(function(){
     if (canvasElement.getContext) {
       // remember!!! what you are drawing here is in a 400 X 1000 canvas but don't forget to multiply by the dpi
       var ctx = canvasElement.getContext('2d');
+      ctx.strokeStyle = "red"
       let lineWidthBeforDpi = 2;
       let lineWidth = lineWidthBeforDpi*dpi;
       ctx.lineWidth = lineWidth;

@@ -8,7 +8,7 @@ $(document).ready(function(){
     $("#hw-dropdown-menu").css("max-height", 0.75*(window_height-y_position)+"px")
     var window_width = $(window).width()
     $("#hw-dropdown-menu").css("max-width", 0.75*(window_width)+"px")
-    drawTheReverseScaleClock()
+    drawTheReverseScaleClock(400,1000)
     setOpeningImgDimensionsAccordingToWidtHeightRatioOf(0.4);
   });
 
@@ -45,6 +45,7 @@ $(document).ready(function(){
   }
 
   function setOpeningImgDimensionsAccordingToWidtHeightRatioOf(ratio) {
+    
     $("#reverseScaleClockCanvasOpeningImg").css("width", 80+"%") // set the width to be 80% if it results in too big height, we will fix it
     var canvasWidthAsString = $("#reverseScaleClockCanvasOpeningImg").css("width")
     var canvasWidth = parseInt(canvasWidthAsString, 10); // 10 means parse this string in the decimal number system
@@ -52,6 +53,17 @@ $(document).ready(function(){
     // set max-height to 1000px
     if (canvasHeight > 1000) {
       canvasHeight = 1000; 
+      canvasWidth = ratio*canvasHeight;
+    }
+    // fith height in the screen. we want to make sure the clock img will fit completlly inside the screen without the need to scroll down to see the entire img
+    // so we shrink it again
+    let bodyHeigt = $("body").height()
+    let navbarHeight = $(".navbar").first().height()
+    let navbarTopPaddingAsString = $(".navbar").first().css("padding-top")
+    let navbarTopPadding = parseInt(navbarTopPaddingAsString, 10);
+    let imgTitleHeight = $($(".hwChapterNumber")[1]).height() 
+    if (canvasHeight > (bodyHeigt-navbarHeight-2*navbarTopPadding-imgTitleHeight)) {
+      canvasHeight = 0.9*(bodyHeigt-navbarHeight-2*navbarTopPadding-imgTitleHeight)
       canvasWidth = ratio*canvasHeight;
     }
     // set dimensions for both canvas and svg
@@ -87,7 +99,7 @@ $(document).ready(function(){
   // read this artical to explain.
   // the solution is this method that should be called inside every draw function
   // https://medium.com/wdstack/fixing-html5-2d-canvas-blur-8ebe27db07da
-  function fix_dpi() {
+  function fix_dpi(widthInPx, heightInPx) {
     //get DPI
     let dpi = window.devicePixelRatio;
     //get canvas
@@ -97,23 +109,23 @@ $(document).ready(function(){
     //get CSS height
     //the + prefix casts it to an integer
     //the slice method gets rid of "px"
-    let style_height = +getComputedStyle(canvas).getPropertyValue("height").slice(0, -2);
+    let style_height = heightInPx//+getComputedStyle(canvas).getPropertyValue("height").slice(0, -2);
     //get CSS width
-    let style_width = +getComputedStyle(canvas).getPropertyValue("width").slice(0, -2);
+    let style_width = widthInPx// +getComputedStyle(canvas).getPropertyValue("width").slice(0, -2);
     //scale the canvas
     canvas.setAttribute('height', style_height * dpi);
     canvas.setAttribute('width', style_width * dpi);    
   }
 
-  function drawTheReverseScaleClock() {
+  function drawTheReverseScaleClock(widthInPx, heightInPx) {
     // ----------------------------------------------------------------------------------
-    // remember!!!! - you're scaling the canvas, so 400X1000 become 1200X3000, so when you draw multiply each length or coordinate by the dpi
+    // remember!!!! - you're scaling the canvas, so 400X1000 become 1200X3000 (in iphone6 for example), so when you draw multiply each length or coordinate by the dpi
     // don't worry if these sounds very big, because after we draw we shrink the canvas to an actual fitting size
-    fix_dpi()
+    fix_dpi(widthInPx, heightInPx)
     let dpi = window.devicePixelRatio;
     // ----------------------------------------------------------------------------------
-    var canvasWidth = $("#reverseScaleClockCanvasOpeningImg").width()
-    var canvasHeight = $("#reverseScaleClockCanvasOpeningImg").height()
+    var canvasWidth = widthInPx// $("#reverseScaleClockCanvasOpeningImg").width()
+    var canvasHeight = heightInPx//$("#reverseScaleClockCanvasOpeningImg").height()
     var canvasElement = document.getElementById('reverseScaleClockCanvasOpeningImg');
     if (canvasElement.getContext) {
       // remember!!! what you are drawing here is in a 400 X 1000 canvas but don't forget to multiply by the dpi

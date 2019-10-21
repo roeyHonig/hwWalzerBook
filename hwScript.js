@@ -135,6 +135,15 @@ $(document).ready(function(){
       let lineWidth = lineWidthBeforDpi*dpi;
       ctx.lineWidth = lineWidth;
       ctx.strokeRect(0.5*lineWidth, 0.5*lineWidth, canvasWidth*dpi-lineWidth, canvasHeight*dpi-lineWidth)
+      ctx.save()
+      // change the CS
+      ctx.translate(200,300)
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0*dpi, -50*dpi);
+      ctx.stroke();
+      ctx.restore()
+
       /*
     ctx.beginPath();
     ctx.moveTo(0, 0);

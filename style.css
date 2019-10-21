@@ -68,6 +68,11 @@ body {
   .hwChapterNumber{
     font-size: 40px;
     }
+    #reverseScaleClockWording{
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
   /* When Window Width is less then 1201px */
 @media (max-width: 1201px) {
     .hwChapter {
@@ -75,6 +80,9 @@ body {
     }
     .hwChapterNumber{
         font-size: 36px;
+        }
+        #reverseScaleClockWording{
+            font-size: 18px;
         }
 }
 /* When Window Width is less then 936px */
@@ -85,6 +93,9 @@ body {
     .hwChapterNumber{
         font-size: 32px;
         }
+        #reverseScaleClockWording{
+            font-size: 16px;
+        }
 }
 /* When Window Width is less then 636px */
 @media (max-width: 636px) {
@@ -94,6 +105,9 @@ body {
     .hwChapterNumber{
         font-size: 28px;
         }
+        #reverseScaleClockWording{
+            font-size: 14px;
+        }
 }
 /* When Window Width is less then 500px */
 @media (max-width: 500px) {
@@ -102,6 +116,9 @@ body {
     }
     .hwChapterNumber{
         font-size: 24px;
+        }
+        #reverseScaleClockWording{
+            font-size: 12px;
         }
 }
 /* When Window Width is less then 400px */

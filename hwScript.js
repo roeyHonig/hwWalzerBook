@@ -8,7 +8,8 @@ $(document).ready(function(){
     $("#hw-dropdown-menu").css("max-height", 0.75*(window_height-y_position)+"px")
     var window_width = $(window).width()
     $("#hw-dropdown-menu").css("max-width", 0.75*(window_width)+"px")
-    drawTheReverseScaleClock(400,1000)
+    //drawTheReverseScaleClock()
+    window.requestAnimationFrame(drawTheReverseScaleClock);
     setOpeningImgDimensionsAccordingToWidtHeightRatioOf(0.4);
   });
 
@@ -117,7 +118,10 @@ $(document).ready(function(){
     canvas.setAttribute('width', style_width * dpi);    
   }
 
-  function drawTheReverseScaleClock(widthInPx, heightInPx) {
+  function drawTheReverseScaleClock() {
+    // remember!!! what you are drawing here is in a 400 X 1000 canvas but don't forget to multiply by the dpi
+    var widthInPx = 400
+    var heightInPx = 1000
     // ----------------------------------------------------------------------------------
     // remember!!!! - you're scaling the canvas, so 400X1000 become 1200X3000 (in iphone6 for example), so when you draw multiply each length or coordinate by the dpi
     // don't worry if these sounds very big, because after we draw we shrink the canvas to an actual fitting size
@@ -136,14 +140,42 @@ $(document).ready(function(){
       ctx.lineWidth = lineWidth;
       ctx.strokeRect(0.5*lineWidth, 0.5*lineWidth, canvasWidth*dpi-lineWidth, canvasHeight*dpi-lineWidth)
       ctx.save()
-      // change the CS
-      ctx.translate(200,300)
+      // write Seconds
+      var now = new Date();
+      var sec = now.getSeconds();
+      var miliSec = now.getMilliseconds();
+      ctx.translate(200*dpi,300*dpi)
+      ctx.rotate((sec+miliSec/1000) * Math.PI/30)
       ctx.beginPath();
       ctx.moveTo(0, 0);
-      ctx.lineTo(0*dpi, -50*dpi);
+      ctx.lineTo(0*dpi, -70*dpi);
+      ctx.stroke();
+      ctx.restore()
+      ctx.save()
+      // write Minitues
+      var min = now.getMinutes();
+      ctx.translate(200*dpi,300*dpi)
+      ctx.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec)
+      ctx.strokeStyle = "black"
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0*dpi, -90*dpi);
+      ctx.stroke();
+      ctx.restore()
+      ctx.save()
+      // write Hrs
+      var hr = now.getHours();
+      ctx.translate(200*dpi,300*dpi)
+      ctx.rotate(hr * (Math.PI / 6) + (Math.PI / 360) * min + (Math.PI / 21600) *sec/*hr * (Math.PI / 12) + (Math.PI / 30) * min + (Math.PI / 1800) *sec + (Math.PI/2)*/)
+      ctx.strokeStyle = "black"
+      ctx.lineWidth = 4*dpi;
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0*dpi, -60*dpi);
       ctx.stroke();
       ctx.restore()
 
+      window.requestAnimationFrame(drawTheReverseScaleClock);
       /*
     ctx.beginPath();
     ctx.moveTo(0, 0);

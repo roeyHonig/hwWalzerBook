@@ -149,37 +149,32 @@ $(document).ready(function(){
       ctx.rotate((sec+miliSec/1000) * Math.PI/30)
       ctx.beginPath();
       ctx.moveTo(0, 0);
-      //ctx.lineTo(0*dpi, -70*dpi);
-      //ctx.stroke();
-      
       // fancy seconds hand
       ctx.lineTo(6*dpi,0*dpi)
-      drawCanvasArcBetweenTwoPoints(6,0,2,-5.66,0,0,ctx,dpi)
+      drawCanvasArcBetweenTwoPoints(6,0,2,-5.66,0,0,ctx,dpi,true)
       ctx.lineTo(2*dpi,-23.02*dpi)
-      drawClockWiseCanvasArcBetweenTwoPoints(2,-23.2,5.2,-26.0,5,-23.0,ctx,dpi)
+      drawCanvasArcBetweenTwoPoints(2,-23.2,5.2,-26.0,5,-23.0,ctx,dpi, false)
       ctx.lineTo(10*dpi,-26*dpi)
       ctx.lineTo(10*dpi,-34*dpi)
       ctx.lineTo(2*dpi,-34*dpi)
       ctx.lineTo(2*dpi,-37.29*dpi)
-      drawCanvasArcBetweenTwoPoints(2,-37.29,2,-50.71,0,-44,ctx,dpi)
+      drawCanvasArcBetweenTwoPoints(2,-37.29,2,-50.71,0,-44,ctx,dpi, true)
       ctx.lineTo(1*dpi,-93*dpi)
       ctx.arc(0*dpi,-93*dpi,1*dpi,0,Math.PI,true)
       //Mirror
       ctx.lineTo(-2*dpi,-50.71*dpi)
-      draw3rdClockWiseCanvasArcBetweenTwoPoints(-2,-50.71,-2,-37.29,0,-44,ctx,dpi)
+      drawCanvasArcBetweenTwoPoints(-2,-50.71,-2,-37.29,0,-44,ctx,dpi, true)
       ctx.lineTo(-2*dpi,-34*dpi)
       ctx.lineTo(-10*dpi,-34*dpi)
       ctx.lineTo(-10*dpi,-26*dpi)
       ctx.lineTo(-5.2*dpi,-26*dpi)
       ctx.arc(-5,-23,3,-Math.PI/2,0, false)
       ctx.lineTo(-2*dpi,-5.66*dpi)
-      draw4rdClockWiseCanvasArcBetweenTwoPoints(-2,-5.66,-6,0,0,0,ctx,dpi)
+      drawCanvasArcBetweenTwoPoints(-2,-5.66,-6,0,0,0,ctx,dpi,true)
       ctx.lineTo(0*dpi,0*dpi)
-      //console.log("seconds: "+sec)
       ctx.stroke();
       ctx.fill()
 
-      //ctx.endPath()
       ctx.beginPath();
       ctx.moveTo(0, -44);
       ctx.strokeStyle = 'white'
@@ -198,7 +193,6 @@ $(document).ready(function(){
 
       ctx.restore()
       ctx.save()
-      
       // write Minitues
       var min = now.getMinutes();
       ctx.translate(200*dpi,300*dpi)
@@ -235,34 +229,44 @@ $(document).ready(function(){
     }
   }
 
-  function drawCanvasArcBetweenTwoPoints(x1,y1,x2,y2,xCenter,yCenter,context,dpi) {
-    var startAngle = Math.atan((y1-yCenter)/(x1-xCenter))
-    var endAngle = Math.atan((y2-yCenter)/(x2-xCenter))
+  function drawCanvasArcBetweenTwoPoints(x1,y1,x2,y2,xCenter,yCenter,context,dpi,CounterClockWise) {
     var radius = Math.sqrt((y1-yCenter)*(y1-yCenter) + (x1-xCenter)*(x1-xCenter))
-    context.arc(xCenter*dpi,yCenter*dpi,radius,startAngle,endAngle,true)
-  }
-
-  function drawClockWiseCanvasArcBetweenTwoPoints(x1,y1,x2,y2,xCenter,yCenter,context,dpi) {
-    var startAngle = Math.PI - Math.atan((y1-yCenter)/(x1-xCenter))
-    var endAngle = Math.atan((y2-yCenter)/(x2-xCenter))
-    var radius = Math.sqrt((y1-yCenter)*(y1-yCenter) + (x1-xCenter)*(x1-xCenter))
-    context.arc(xCenter*dpi,yCenter*dpi,radius,startAngle,endAngle,false)
-  }
-
-  function draw3rdClockWiseCanvasArcBetweenTwoPoints(x1,y1,x2,y2,xCenter,yCenter,context,dpi) {
-    var startAtan = Math.atan((y1-yCenter)/(x1-xCenter))
-    var endAtan = Math.atan((y2-yCenter)/(x2-xCenter))
-    var startAngle = -Math.atan((y1-yCenter)/(x1-xCenter))
-    var endAngle = -Math.atan((y2-yCenter)/(x2-xCenter))
-    var radius = Math.sqrt((y1-yCenter)*(y1-yCenter) + (x1-xCenter)*(x1-xCenter))
-    context.arc(xCenter*dpi,yCenter*dpi,radius,startAngle,endAngle,true)  // -2.64, -3.9
-  }
-
-  function draw4rdClockWiseCanvasArcBetweenTwoPoints(x1,y1,x2,y2,xCenter,yCenter,context,dpi) {
-    var startAtan = Math.atan((y1-yCenter)/(x1-xCenter))
-    var endAtan = Math.atan((y2-yCenter)/(x2-xCenter))
-    var startAngle = -Math.atan((y1-yCenter)/(x1-xCenter))
-    var endAngle = Math.PI// -Math.atan((y2-yCenter)/(x2-xCenter))
-    var radius = Math.sqrt((y1-yCenter)*(y1-yCenter) + (x1-xCenter)*(x1-xCenter))
-    context.arc(xCenter*dpi,yCenter*dpi,radius,startAngle,endAngle,true)  // -2.64, -3.9
+    var x1Diff = x1-xCenter
+    var y1Diff = y1-yCenter
+    var startAngle = 0
+    if (x1Diff == radius) {
+      startAngle = 0
+    } else if (x1Diff == -radius) {
+      startAngle = -Math.PI
+    } else if (x1Diff == 0) {
+      startAngle = Math.PI/2*y1Diff/radius
+    } else if (y1Diff < 0 && x1Diff < 0) {
+      // 2nd Quad
+      startAngle = Math.atan(y1Diff/x1Diff)-Math.PI
+    } else if (y1Diff > 0 && x1Diff < 0) {
+      // 3rd Quad
+      startAngle = Math.atan(y1Diff/x1Diff)+Math.PI
+    } else {
+      startAngle = Math.atan(y1Diff/x1Diff)
+    }
+    var x2Diff = x2-xCenter
+    var y2Diff = y2-yCenter
+    var endAngle = 0
+    if (x2Diff == radius) {
+      endAngle = 0
+    } else if (x2Diff == -radius) {
+      endAngle = -Math.PI
+    } else if (x2Diff == 0) {
+      endAngle = Math.PI/2*y2Diff/radius
+    } else if (y2Diff < 0 && x2Diff < 0) {
+      // 2nd Quad
+      endAngle = Math.atan(y2Diff/x2Diff)-Math.PI
+    } else if (y2Diff > 0 && x2Diff < 0) {
+      // 3rd Quad
+      endAngle = Math.atan(y2Diff/x2Diff)+Math.PI
+    } else {
+      endAngle = Math.atan(y2Diff/x2Diff)
+    }
+    
+    context.arc(xCenter*dpi,yCenter*dpi,radius,startAngle,endAngle,CounterClockWise)
   }

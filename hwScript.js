@@ -147,50 +147,7 @@ $(document).ready(function(){
       var miliSec = now.getMilliseconds();
       ctx.translate(200*dpi,300*dpi)
       ctx.rotate((sec+miliSec/1000) * Math.PI/30)
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      // fancy seconds hand
-      ctx.lineTo(6*dpi,0*dpi)
-      drawCanvasArcBetweenTwoPoints(6,0,2,-5.66,0,0,ctx,dpi,true)
-      ctx.lineTo(2*dpi,-23.02*dpi)
-      drawCanvasArcBetweenTwoPoints(2,-23.2,5.2,-26.0,5,-23.0,ctx,dpi, false)
-      ctx.lineTo(10*dpi,-26*dpi)
-      ctx.lineTo(10*dpi,-34*dpi)
-      ctx.lineTo(2*dpi,-34*dpi)
-      ctx.lineTo(2*dpi,-37.29*dpi)
-      drawCanvasArcBetweenTwoPoints(2,-37.29,2,-50.71,0,-44,ctx,dpi, true)
-      ctx.lineTo(1*dpi,-93*dpi)
-      ctx.arc(0*dpi,-93*dpi,1*dpi,0,Math.PI,true)
-      //Mirror
-      ctx.lineTo(-2*dpi,-50.71*dpi)
-      drawCanvasArcBetweenTwoPoints(-2,-50.71,-2,-37.29,0,-44,ctx,dpi, true)
-      ctx.lineTo(-2*dpi,-34*dpi)
-      ctx.lineTo(-10*dpi,-34*dpi)
-      ctx.lineTo(-10*dpi,-26*dpi)
-      ctx.lineTo(-5.2*dpi,-26*dpi)
-      ctx.arc(-5,-23,3,-Math.PI/2,0, false)
-      ctx.lineTo(-2*dpi,-5.66*dpi)
-      drawCanvasArcBetweenTwoPoints(-2,-5.66,-6,0,0,0,ctx,dpi,true)
-      ctx.lineTo(0*dpi,0*dpi)
-      ctx.stroke();
-      ctx.fill()
-
-      ctx.beginPath();
-      ctx.moveTo(0, -44);
-      ctx.strokeStyle = 'white'
-      ctx.fillStyle = 'white'
-      ctx.arc(0*dpi,-44*dpi,5*dpi,0 , Math.PI * 2, true)
-      ctx.stroke();
-      ctx.fill()
-
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.strokeStyle = 'red'
-      ctx.fillStyle = 'red'
-      ctx.arc(0*dpi,0*dpi,6*dpi,0 , Math.PI * 2, true)
-      ctx.stroke();
-      ctx.fill()
-
+      drawTheHoursHandUsingContext(ctx,dpi)      
       ctx.restore()
       ctx.save()
       // write Minitues
@@ -198,10 +155,8 @@ $(document).ready(function(){
       ctx.translate(200*dpi,300*dpi)
       ctx.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec)
       ctx.strokeStyle = "black"
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.lineTo(0*dpi, -90*dpi);
-      ctx.stroke();
+      ctx.fillStyle = "black"
+      drawTheMinutesHandUsingContext(ctx,dpi)
       ctx.restore()
       ctx.save()
       // write Hrs
@@ -269,4 +224,73 @@ $(document).ready(function(){
     }
     
     context.arc(xCenter*dpi,yCenter*dpi,radius,startAngle,endAngle,CounterClockWise)
+  }
+
+  function drawTheHoursHandUsingContext(ctx,dpi) {
+    ctx.beginPath();
+      ctx.moveTo(0, 0);
+    ctx.lineTo(6*dpi,0*dpi)
+      drawCanvasArcBetweenTwoPoints(6,0,2,-5.66,0,0,ctx,dpi,true)
+      ctx.lineTo(2*dpi,-23.02*dpi)
+      drawCanvasArcBetweenTwoPoints(2,-23.2,5.2,-26.0,5,-23.0,ctx,dpi, false)
+      ctx.lineTo(10*dpi,-26*dpi)
+      ctx.lineTo(10*dpi,-34*dpi)
+      ctx.lineTo(2*dpi,-34*dpi)
+      ctx.lineTo(2*dpi,-37.29*dpi)
+      drawCanvasArcBetweenTwoPoints(2,-37.29,2,-50.71,0,-44,ctx,dpi, true)
+      ctx.lineTo(1*dpi,-93*dpi)
+      ctx.arc(0*dpi,-93*dpi,1*dpi,0,Math.PI,true)
+      //Mirror
+      ctx.lineTo(-2*dpi,-50.71*dpi)
+      drawCanvasArcBetweenTwoPoints(-2,-50.71,-2,-37.29,0,-44,ctx,dpi, true)
+      ctx.lineTo(-2*dpi,-34*dpi)
+      ctx.lineTo(-10*dpi,-34*dpi)
+      ctx.lineTo(-10*dpi,-26*dpi)
+      ctx.lineTo(-5.2*dpi,-26*dpi)
+      ctx.arc(-5,-23,3,-Math.PI/2,0, false)
+      ctx.lineTo(-2*dpi,-5.66*dpi)
+      drawCanvasArcBetweenTwoPoints(-2,-5.66,-6,0,0,0,ctx,dpi,true)
+      ctx.lineTo(0*dpi,0*dpi)
+      ctx.stroke();
+      ctx.fill()
+      
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.strokeStyle = 'red'
+      ctx.fillStyle = 'red'
+      ctx.arc(0*dpi,0*dpi,6*dpi,0 , Math.PI * 2, true)
+      ctx.stroke();
+      ctx.fill()
+  }
+
+  function drawTheMinutesHandUsingContext(ctx,dpi) {
+    ctx.beginPath();
+      ctx.moveTo(-2*dpi, -5.643*dpi);
+      ctx.lineTo(-2*dpi, -11*dpi);
+      ctx.bezierCurveTo(-3*dpi, -16*dpi, -5*dpi, -20*dpi, -7*dpi, -23*dpi);
+      ctx.bezierCurveTo(-5*dpi, -27*dpi, -3*dpi, -32*dpi, -3*dpi, -37*dpi);
+      ctx.bezierCurveTo(-3*dpi, -42*dpi, -4*dpi, -48*dpi, -7*dpi, -53*dpi);
+      ctx.bezierCurveTo(-3*dpi, -54*dpi, -11*dpi, -54*dpi, -14*dpi, -53*dpi);
+      ctx.bezierCurveTo(-17*dpi, -54*dpi, -18*dpi, -57*dpi, -16*dpi, -61*dpi);
+      ctx.bezierCurveTo(-12*dpi, -66*dpi, -8*dpi, -71*dpi, -5*dpi, -77*dpi);
+      ctx.bezierCurveTo(-3*dpi, -88*dpi, -2*dpi, -103*dpi, -2*dpi, -119*dpi);
+      ctx.arc(0*dpi,-119*dpi,2*dpi,-Math.PI,0,false)
+      // Mirror
+      ctx.bezierCurveTo(2*dpi, -103*dpi, 3*dpi, -88*dpi, 5*dpi, -77*dpi);
+      ctx.bezierCurveTo(8*dpi, -71*dpi, 12*dpi, -66*dpi, 16*dpi, -61*dpi);
+      ctx.bezierCurveTo(18*dpi, -57*dpi, 17*dpi, -54*dpi, 14*dpi, -53*dpi);
+      ctx.bezierCurveTo(11*dpi, -54*dpi, 3*dpi, -54*dpi, 7*dpi, -53*dpi);
+      ctx.bezierCurveTo(4*dpi, -48*dpi, 3*dpi, -42*dpi, 3*dpi, -37*dpi);
+      ctx.bezierCurveTo(3*dpi, -32*dpi, 5*dpi, -27*dpi, 7*dpi, -23*dpi);
+      ctx.bezierCurveTo(5*dpi, -20*dpi, 3*dpi, -16*dpi, 2*dpi, -11*dpi);
+      ctx.lineTo(2*dpi, -5.643*dpi);
+      ctx.stroke();
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.strokeStyle = 'red'
+      ctx.fillStyle = 'red'
+      ctx.arc(0*dpi,0*dpi,6*dpi,0 , Math.PI * 2, true)
+      ctx.stroke();
+      ctx.fill()
   }

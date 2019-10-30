@@ -147,7 +147,7 @@ $(document).ready(function(){
       var miliSec = now.getMilliseconds();
       ctx.translate(200*dpi,300*dpi)
       ctx.rotate((sec+miliSec/1000) * Math.PI/30)
-      drawTheHoursHandUsingContext(ctx,dpi)      
+      drawTheSecondsHandUsingContext(ctx,dpi)
       ctx.restore()
       ctx.save()
       // write Minitues
@@ -165,22 +165,10 @@ $(document).ready(function(){
       ctx.rotate(hr * (Math.PI / 6) + (Math.PI / 360) * min + (Math.PI / 21600) *sec/*hr * (Math.PI / 12) + (Math.PI / 30) * min + (Math.PI / 1800) *sec + (Math.PI/2)*/)
       ctx.strokeStyle = "black"
       ctx.lineWidth = 4*dpi;
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.lineTo(0*dpi, -60*dpi);
-      ctx.stroke();
+      drawTheHoursHandUsingContext(ctx,dpi)     
       ctx.restore()
       
       window.requestAnimationFrame(drawTheReverseScaleClock);
-      /*
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(canvasWidth*dpi, 0*dpi);
-    ctx.lineTo(canvasWidth*dpi, canvasHeight*dpi);
-    ctx.lineTo(0*dpi, canvasHeight*dpi);
-    ctx.closePath();
-    ctx.stroke();
-    */
     }
   }
 
@@ -293,4 +281,22 @@ $(document).ready(function(){
       ctx.arc(0*dpi,0*dpi,6*dpi,0 , Math.PI * 2, true)
       ctx.stroke();
       ctx.fill()
+  }
+
+  function drawTheSecondsHandUsingContext(ctx,dpi) {
+    ctx.beginPath();
+      var r1 = 2.5;
+      var r2 = 1.5;
+      ctx.moveTo(r1*dpi, 0);
+      ctx.arc(0*dpi,0*dpi,r1*dpi,0,-0.1*Math.PI,true)
+      ctx.lineTo(r2*dpi,-90*dpi);
+      drawCanvasArcBetweenTwoPoints(r2*dpi,-90*dpi,-r2*dpi,-90*dpi,0*dpi,-90*dpi,ctx,dpi,true)
+      ctx.lineTo(-r1*dpi,0*dpi);
+      ctx.stroke();
+      ctx.fill()  
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.arc(0*dpi,0*dpi,r1*dpi,0,2*Math.PI,true)
+      ctx.stroke();
+      ctx.fill()  
   }

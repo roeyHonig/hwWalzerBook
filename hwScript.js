@@ -66,13 +66,16 @@ $(document).ready(function(){
       canvasHeight = 0.9*(bodyHeigt-navbarHeight-2*navbarTopPadding-imgTitleHeight)
       canvasWidth = ratio*canvasHeight;
     }
-    // set dimensions for both canvas and svg
+    // set dimensions for both img canvas and svg
     $("#reverseScaleClockCanvasOpeningImg").css("height", canvasHeight+"px")
     $("#reverseScaleClockCanvasOpeningImg").css("width", canvasWidth+"px")
     $("#reverseScaleClockCanvasOpeningImg").css("visibility", "visible")
     $("#reverseScaleClockCanvasOpeningImgSVG").css("height", canvasHeight+"px")
     $("#reverseScaleClockCanvasOpeningImgSVG").css("width", canvasWidth+"px")
     $("#reverseScaleClockCanvasOpeningImgSVG").css("visibility", "visible")
+    $("#reverseScaleClockCanvasOpeningImgClockAperatus").css("height", canvasHeight+"px")
+    $("#reverseScaleClockCanvasOpeningImgClockAperatus").css("width", canvasWidth+"px")
+    $("#reverseScaleClockCanvasOpeningImgClockAperatus").css("visibility", "visible")
     // center the canvas element
     var parentDivWidth = $('#reverseScaleClockCanvasOpeningImg').parent().width()
     var sideMargin = (parentDivWidth-canvasWidth)/2
@@ -83,9 +86,16 @@ $(document).ready(function(){
     var sideMargin = (parentDivWidth-canvasWidth)/2
     $("#reverseScaleClockCanvasOpeningImgSVG").css("margin-left", sideMargin+"px")
     $("#reverseScaleClockCanvasOpeningImgSVG").css("margin-right", sideMargin+"px")
-    // since the static position of the canvas will make it render below the svg img , as stated in the html file, we use relitive to re-position the canvas to interlap with svg
+    // center the aperatus img. TODO: seems there is duplicate
+    var parentDivWidth = $('#reverseScaleClockCanvasOpeningImgClockAperatus').parent().width()
+    var sideMargin = (parentDivWidth-canvasWidth)/2
+    $("#reverseScaleClockCanvasOpeningImgClockAperatus").css("margin-left", sideMargin+"px")
+    $("#reverseScaleClockCanvasOpeningImgClockAperatus").css("margin-right", sideMargin+"px")
+    // since the static position of the canvas and svg image will make it render below the apartus img , as stated in the html file, we use relitive to re-position the canvas and svg to interlap with svg
     $("#reverseScaleClockCanvasOpeningImg").css("position", "relative")
-    $("#reverseScaleClockCanvasOpeningImg").css("top", -canvasHeight+"px")
+    $("#reverseScaleClockCanvasOpeningImg").css("top", -2*canvasHeight+"px")
+    $("#reverseScaleClockCanvasOpeningImgSVG").css("position", "relative")
+    $("#reverseScaleClockCanvasOpeningImgSVG").css("top", -canvasHeight+"px")
     // shrink the parentElement
     let parentElement = $('#reverseScaleClockCanvasOpeningImgSVG').parent()
     let oldHeight = parentElement.height()

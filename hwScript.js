@@ -99,7 +99,7 @@ $(document).ready(function(){
     // shrink the parentElement
     let parentElement = $('#reverseScaleClockCanvasOpeningImgSVG').parent()
     let oldHeight = parentElement.height()
-    parentElement.css("height", oldHeight-canvasHeight+"px")
+    parentElement.css("height", oldHeight-2*canvasHeight+"px")
   }
   
   // If we use the canvas element with static dimensions, then we can draw with no problem, but if we need dynamic dimensions that will sclae autometically, according to the parent div element, for example (such as 80% width, in our case), then we have a problem and the canvas element will scale the drawing as well, similarlly to scaling of an image.
@@ -148,7 +148,8 @@ $(document).ready(function(){
       let lineWidthBeforDpi = 1;
       let lineWidth = lineWidthBeforDpi*dpi;
       ctx.lineWidth = lineWidth;
-      ctx.strokeRect(0.5*lineWidth, 0.5*lineWidth, canvasWidth*dpi-lineWidth, canvasHeight*dpi-lineWidth)
+      // uncomment the following line ti draw the outside frame of the canvas in red line
+      //ctx.strokeRect(0.5*lineWidth, 0.5*lineWidth, canvasWidth*dpi-lineWidth, canvasHeight*dpi-lineWidth)
       ctx.save()
       // get time
       var now = new Date();

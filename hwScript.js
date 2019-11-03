@@ -157,7 +157,8 @@ $(document).ready(function(){
       var miliSec = now.getMilliseconds();
       // write Minitues
       var min = now.getMinutes();
-      ctx.translate(200*dpi,300*dpi)
+      ctx.translate(203*dpi,278*dpi)
+      ctx.scale(0.8,0.8)
       ctx.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec)
       ctx.strokeStyle = "black"
       ctx.fillStyle = "black"
@@ -166,7 +167,8 @@ $(document).ready(function(){
       ctx.save()
       // write Hrs
       var hr = now.getHours();
-      ctx.translate(200*dpi,300*dpi)
+      ctx.translate(203*dpi,278*dpi)
+      ctx.scale(0.8,0.8)
       ctx.rotate(hr * (Math.PI / 6) + (Math.PI / 360) * min + (Math.PI / 21600) *sec/*hr * (Math.PI / 12) + (Math.PI / 30) * min + (Math.PI / 1800) *sec + (Math.PI/2)*/)
       ctx.strokeStyle = "black"
       ctx.fillStyle = "black"
@@ -177,7 +179,8 @@ $(document).ready(function(){
       // write seconds
       var sec = now.getSeconds();
       var miliSec = now.getMilliseconds();
-      ctx.translate(200*dpi,300*dpi)
+      ctx.translate(203*dpi,278*dpi)
+      ctx.scale(0.8,0.8)
       ctx.rotate((sec+miliSec/1000) * Math.PI/30)
       drawTheSecondsHandUsingContext(ctx,dpi)
       ctx.restore()
